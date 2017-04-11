@@ -7,6 +7,7 @@
     "bower": "^1.8.0"
   },
   "devDependencies": {
+    "bower": "^1.8.0",
     "grunt": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-exec": "^2.0.0",

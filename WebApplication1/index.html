@@ -3,15 +3,23 @@
 <head>
     <title>Simple Angular Chat app</title>
     <meta charset="utf-8" />
+
+    <script src="Scripts/jquery-3.1.1.min.js"></script>
+    <script src="Scripts/angular.min.js"></script>
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
     <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">    
 
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <link href="bower_components/ng-emoticons/src/ng-emoticons.css" rel="stylesheet" />
+    <script src="bower_components/ng-emoticons/src/ng-emoticons.js"></script>
+    <link rel="stylesheet" href="path/to/highlight-theme.css" />
+    <script src="path/to/highlight.js"></script>
     <link href="Content/chatApp.css" rel="stylesheet" />
 
-    <script src="Scripts/jquery-3.1.1.min.js"></script>
-    <script src="Scripts/angular.min.js"></script>
+
 
     <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
 
@@ -44,7 +52,7 @@
                     <h3><i class="material-icons">chat_bubble_outline</i> Angular Chat</h3>                  
                 </div>
                 <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
-                    <h6>using Material Design Lite and Firebase platform for hosting</h6> 
+                    <h6>A single page application using Material Design Lite and Firebase platform for hosting</h6> 
                 </div>
 
                 <div id="userContainer">
@@ -71,11 +79,11 @@
                                 <li ng-repeat="message in messages">
                                     <div class="message-container">
                                         <div class="spacing"><div><img class="pic" ng-src="{{message.photoUrl}}"/></div></div> 
-                                        <div class="message" ng-bind-html="text">
-                                            <p ng-bind="message.text"></p>
+                                        <div class="message">
+                                            <p ng-bind-html="message.text | emoticons:{linkTarget: '_blank'}" class="ng-binding"></p>
                                         </div>
                                         <div class="name">
-                                            <b ng-bind="message.username"></b> <b ng-bind="message.timestamp | date: 'medium'">@</b>
+                                            <b ng-bind="message.username"></b> <b ng-bind="message.timestamp | date: 'medium'"></b>
                                         </div>
                                     </div>
                                     <div>                                

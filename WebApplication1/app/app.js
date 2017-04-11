@@ -69,7 +69,6 @@ app.controller('chatController', ['$scope', '$q', '$firebaseArray', function ($s
         });
         this.msgText = '';
     };
-
     
     $scope.embed = {
         fontSmiley: true,    // toggle converting ascii smileys into font smileys
@@ -78,6 +77,22 @@ app.controller('chatController', ['$scope', '$q', '$firebaseArray', function ($s
         link: true,    // toggle converting urls into anchor tags
         linkTarget: '_self'  //_blank|_self|_parent|_top|framename|cordova
     }
+
+    $scope.options = {
+        fontSmiley: true,    // toggle converting ascii smileys into font smileys
+        sanitizeHtml: true,   // toggle converting html code into text
+        emoji: true,    // toggle converting emojis short names into images
+        link: true,                   //convert links into anchor tags
+        linkTarget: '_self',
+        video: {
+            embed: true,
+            width: 300,          //width of embedded player
+            height: 300,          //height of embedded player
+            ytTheme: 'light',        //youtube player theme (light/dark)
+            details: true,
+            ytAuthKey: 'xxxxxxxONTdSSaKwqB1Xxxxxxxx9r_PtusDhq0'
+        }
+    };
 
 }]);
 

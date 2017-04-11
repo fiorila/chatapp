@@ -15,8 +15,8 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
     <link href="bower_components/ng-emoticons/src/ng-emoticons.css" rel="stylesheet" />
     <script src="bower_components/ng-emoticons/src/ng-emoticons.js"></script>
-    <link rel="stylesheet" href="path/to/highlight-theme.css" />
-    <script src="path/to/highlight.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
     <link href="Content/chatApp.css" rel="stylesheet" />
 
 
@@ -86,21 +86,12 @@
                                             <b ng-bind="message.username"></b> <b ng-bind="message.timestamp | date: 'medium'"></b>
                                         </div>
                                     </div>
-                                    <div>                                
-                                    </div>
-
                                 </li>
                             </ul>
                         </div>
                         <form id="message-form">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input"  ng-model="msgText" type="text" id="message">
-                                <span emoji-picker="message"
-                                      placement="right"
-                                      title="Emoji"
-                                      recent-limit="10"
-                                      output-format="unicode"
-                                      on-change-func="messageUpdated"></span>
                                 <label class="mdl-textfield__label" for="message">Message...</label>
                             </div>
                             <button id="send" ng-click="post()" 
@@ -111,11 +102,6 @@
                             </button>
                         </form>
                     </div>
-                </div>
-
-                <div id="must-signin-snackbar" class="mdl-js-snackbar mdl-snackbar">
-                    <div class="mdl-snackbar__text"></div>
-                    <button class="mdl-snackbar__action" type="button"></button>
                 </div>
             </div>
         </main>

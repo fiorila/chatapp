@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Angular Chat app</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
+    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">    
+
+    <link href="Content/chatApp.css" rel="stylesheet" />
+
+    <script src="Scripts/jquery-3.1.1.min.js"></script>
+    <script src="Scripts/angular.min.js"></script>
+
+    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase-messaging.js"></script>
+
+    <script>
+        var config = {
+            apiKey: "AIzaSyCe10eqNFc2Yae2symJPIC-UHoOEtUD-5M",
+            authDomain: "chatapp-bc8f1.firebaseapp.com",
+            databaseURL: "https://chatapp-bc8f1.firebaseio.com",
+            projectId: "chatapp-bc8f1",
+            storageBucket: "chatapp-bc8f1.appspot.com",
+            messagingSenderId: "1027134550607"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="app/app.js"></script>
+</head>
+<body ng-app="chatApp">
+    <div ng-controller="chatController" class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+        <!-- Header section containing logo -->
+        <header class="mdl-layout__header mdl-color-text--white mdl-color--light-blue-700">
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
+                <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+                    <h3><i class="material-icons">chat_bubble_outline</i> Angular Chat</h3>                  
+                </div>
+                <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+                    <h6>using Material Design Lite and Firebase platform for hosting</h6> 
+                </div>
+
+                <div id="userContainer">
+                    <div><img id="profilePic" ng-if="user.uid != null" ng-src="{{user.profilePicUrl}}" alt="ProfilePic"/></div>
+                    <div ng-bind="user.username"  id="username"></div>
+                    <button ng-click="logout()" id="signout"  ng-if="user.uid != null" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
+                        <i class="material-icons">exit_to_app</i>Sign-out
+                    </button>
+                    <button ng-click="login()" ng-show="user.uid == null"  class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
+                        <i class="material-icons">account_circle</i>Sign-in with Google
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="mdl-layout__content mdl-color--grey-100">
+            <div id="messages-card-container" class="mdl-cell mdl-cell--12-col mdl-grid">
+                <!-- Messages container -->
+                <div id="messages-card" class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--8-col-desktop">
+                    <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                        <div id="messages">
+                            <span id="message-filler"></span>
+                            <ul>
+                                <li ng-repeat="message in messages">
+                                    <div class="message-container">
+                                        <div class="spacing"><div><img class="pic" ng-src="{{message.photoUrl}}"/></div></div> 
+                                        <div class="message" ng-bind-html="text">
+                                            <p ng-bind="message.text"></p>
+                                        </div>
+                                        <div class="name">
+                                            <b ng-bind="message.username"></b> <b ng-bind="message.timestamp | date: 'medium'">@</b>
+                                        </div>
+                                    </div>
+                                    <div>                                
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <form id="message-form">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input"  ng-model="msgText" type="text" id="message">
+                                <span emoji-picker="message"
+                                      placement="right"
+                                      title="Emoji"
+                                      recent-limit="10"
+                                      output-format="unicode"
+                                      on-change-func="messageUpdated"></span>
+                                <label class="mdl-textfield__label" for="message">Message...</label>
+                            </div>
+                            <button id="send" ng-click="post()" 
+                                    type="submit" 
+                                    ng-disabled="msgText==='' ||  user.uid == null || msgText.length > 300"
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                Send
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="must-signin-snackbar" class="mdl-js-snackbar mdl-snackbar">
+                    <div class="mdl-snackbar__text"></div>
+                    <button class="mdl-snackbar__action" type="button"></button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

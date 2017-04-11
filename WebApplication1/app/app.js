@@ -1,6 +1,6 @@
 ﻿"use strict";
 
-var app = angular.module('chatApp', ['firebase']);
+var app = angular.module('chatApp', ['firebase', 'ngEmoticons']);
 
 app.controller('chatController', ['$scope', '$q', '$firebaseArray', function ($scope, $q, $firebaseArray) {
 

@@ -1,0 +1,24 @@
+{
+  "name": "chatapp",
+  "description": "a single page application in angularjs",
+  "main": "index.html",
+  "authors": [
+    "Fjorilda Gjermizi"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "chat",
+    "angularjs"
+  ],
+  "homepage": "https://github.com/fiorila/chatapp",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ng-emoticons": "^2.1.0"
+  }
+}

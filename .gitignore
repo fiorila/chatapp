@@ -1,2 +1,10 @@
 node_modules/
 bower_components/
+/.vs
+/packages
+/WebApplication1/webchat/public
+/WebApplication1/bin
+/WebApplication1/Gruntfile.js
+/WebApplication1/webchat
+/WebApplication1/obj
+

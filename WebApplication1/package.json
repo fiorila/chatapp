@@ -4,7 +4,6 @@
   "description": "a single page application in angularjs",
   "main": "index.html",
   "dependencies": {
-    "bower": "^1.8.0"
   },
   "devDependencies": {
     "bower": "^1.8.0",
@@ -14,7 +13,7 @@
     "grunt-html2js": "^0.3.8"
   },
   "scripts": {
-    "test": " "
+    "postinstall": "bower install"
   },
   "repository": {
     "type": "git",
